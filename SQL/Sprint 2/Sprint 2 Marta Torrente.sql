@@ -1,6 +1,6 @@
 USE transactions;
 
-# Nivell 1   
+-- Nivell 1 --   
 # Exercici 2 Utilitzant JOIN realitzaràs les següents consultes.
 
 # Llistat dels països que estan generant vendes.
@@ -9,7 +9,8 @@ SELECT DISTINCT country
 FROM company c
 JOIN transaction t
 ON c.id = t.company_id
-WHERE declined = FALSE;
+WHERE declined = 0;
+
  
 # Des de quants països es generen les vendes.
 
@@ -17,7 +18,8 @@ SELECT count(DISTINCT country) AS total_paises_con_ventas
 FROM company c
 JOIN transaction t
 ON c.id = t.company_id
-WHERE declined = FALSE;
+WHERE declined = 0;
+
 
 # Identifica la companyia amb la mitjana més gran de vendes.
 
@@ -25,12 +27,12 @@ SELECT company_name, round(AVG(amount),2) AS Media_ventas
 FROM company c
 JOIN transaction t
 ON c.id = t.company_id
-WHERE t.declined = FALSE
+WHERE t.declined = 0
 GROUP BY company_name
-ORDER BY Media_ventas LIMIT 1;
+ORDER BY Media_ventas DESC LIMIT 1;
+
 
 # Exercici 3 Utilitzant només subconsultes (sense utilitzar JOIN):
-
 # Mostra totes les transaccions realitzades per empreses d'Alemanya.
 
 SELECT * 
@@ -40,7 +42,9 @@ WHERE company_id IN (
     FROM company
     WHERE country = 'Germany');
     
+    
 # Llista les empreses que han realitzat transaccions per un amount superior a la mitjana de totes les transaccions.
+
 SELECT company_name
 FROM company
 WHERE id IN (
@@ -59,17 +63,16 @@ WHERE id NOT IN (
 	SELECT company_id
     FROM transaction);
     
-
-# Nivell 2
+-- Nivell 2 --
 
 # Exercici 1 
 # Identifica els cinc dies que es va generar la quantitat més gran d'ingressos a l'empresa per vendes. Mostra la data de cada transacció juntament amb el total de les vendes.
 
-SELECT date(timestamp) AS fecha, sum(amount) AS total_ingreso
+SELECT date(timestamp) AS fecha, sum(amount) AS total_ventas
 FROM transaction
-WHERE declined = FALSE
+WHERE declined = 0
 GROUP BY fecha
-ORDER BY total_ingreso DESC LIMIT 5;
+ORDER BY total_ventas DESC LIMIT 5;
 
 # Exercici 2
 # Quina és la mitjana de vendes per país? Presenta els resultats ordenats de major a menor mitjà.
@@ -78,7 +81,7 @@ SELECT country, round(avg(amount),2) AS media_ventas
 FROM company c
 JOIN transaction t
 ON c.id = t.company_id
-WHERE declined = FALSE
+WHERE declined = 0
 GROUP BY country
 ORDER BY media_ventas DESC;
 
@@ -112,13 +115,11 @@ WHERE company_id IN (
 		WHERE company_name = "Non Institute")
     );
 
-# Nivell 3
+-- Nivell 3 --
 # Exercici 1
 # Presenta el nom, telèfon, país, data i amount, d'aquelles empreses que van realitzar transaccions amb un valor 
 # comprès entre 350 i 400 euros i en alguna d'aquestes dates: 29 d'abril del 2015, 20 de juliol del 2018 i 13 de març del 2024. 
 # Ordena els resultats de major a menor quantitat.
-
-
 
 SELECT company_name, phone, country, date(timestamp) AS fecha, amount
 FROM company c
@@ -128,6 +129,7 @@ WHERE amount  BETWEEN 350 AND 400
 AND date(timestamp) IN ('2015-04-29','2018-07-20','2024-03-13') 
 ORDER BY amount DESC;
 
+
 # Exercici 2
 # Necessitem optimitzar l'assignació dels recursos i dependrà de la capacitat operativa que es requereixi, per la qual cosa et demanen la informació sobre la quantitat de transaccions que realitzen les empreses,
 # però el departament de recursos humans és exigent i vol un llistat de les empreses on especifiquis si tenen més de 400 transaccions o menys.
@@ -136,8 +138,10 @@ SELECT company_name, count(t.id) as total_transacciones,
 	CASE
 		WHEN count(t.id) > 400 THEN 'Más de 400'
 		ELSE 'Menos de 400'
-	END AS Clasificación
+	END AS Clasificación_por_ventas
 FROM company c
 LEFT JOIN transaction t
 ON c.id = t.company_id
 GROUP BY c.company_name;
+
+
