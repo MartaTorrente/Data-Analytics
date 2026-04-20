@@ -8,7 +8,7 @@ Curso especialización Data Analytics
 - Sprint 3
 - Sprint 4
 
-### MONGO DB
+### MongoDB
 - Sprint 5
 
 ### Power BI
@@ -30,7 +30,7 @@ Curso especialización Data Analytics
 ## Tecnologías utilizadas
 
 - SQL
-- MONGO DB
+- MongoDB
 - Power BI
 - Python
 - API REST
