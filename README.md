@@ -4,13 +4,14 @@ Curso especialización Data Analytics
 ## Estructura del curso
 
 ### SQL
-- Sprint 1
 - Sprint 2
 - Sprint 3
 - Sprint 4
 
-### Power BI
+### MongoDB
 - Sprint 5
+
+### Power BI
 - Sprint 6
 - Sprint 7
 - Sprint 8
@@ -29,6 +30,7 @@ Curso especialización Data Analytics
 ## Tecnologías utilizadas
 
 - SQL
+- MongoDB
 - Power BI
 - Python
 - API REST
