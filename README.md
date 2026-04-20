@@ -12,7 +12,6 @@ Curso especialización Data Analytics
 - Sprint 5
 
 ### Power BI
-- Sprint 5
 - Sprint 6
 - Sprint 7
 - Sprint 8
