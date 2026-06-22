@@ -1,0 +1,24 @@
+# Fitxers amb credencials
+.env
+
+# Fitxers temporals de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Entorns virtuals
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operatiu
+.DS_Store  # Mac
+Thumbs.db  # Windows
