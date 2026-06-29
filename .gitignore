@@ -19,6 +19,8 @@ ENV/
 *.swp
 *.swo
 
+proyecto/
+
 # Sistema operatiu
 .DS_Store  # Mac
 Thumbs.db  # Windows
